@@ -1,4 +1,4 @@
-angular.module('running4beer.controllers', [])
+angular.module('ionicParseApp.controllers', [])
 
 .controller('WelcomeController', function($scope, $state, $ionicViewService,
                                           $stateParams) {

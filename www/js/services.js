@@ -1,4 +1,4 @@
-angular.module('running4beer.services', [])
+angular.module('ionicParseApp.services', [])
 
 /**
  * A simple example service that returns some data.
