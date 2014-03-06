@@ -1,0 +1,1 @@
+A starter app for Ionic with user integration against Parse.

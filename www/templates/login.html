@@ -1,0 +1,21 @@
+<ion-view title="'Login'">
+    <ion-content has-header="true" has-tabs="true" padding="true">
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label">Email</span>
+                <input type="text" ng-model="user.username">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Password</span>
+                <input type="password" ng-model="user.password">
+            </label>
+        </div>
+        <div class="assertive" ng-show="error.message">{{error.message}}</div>
+        <button class="button button-block button-positive" ng-click="login()">
+            LOG IN
+        </button>
+        <button class="button button-block button-clear button-calm" ng-click="forgot()">
+            Forgot your password?
+        </button>
+    </ion-content>
+</ion-view>

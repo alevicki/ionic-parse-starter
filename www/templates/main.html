@@ -1,0 +1,25 @@
+<ion-view title="'Main'">
+    <ion-side-menus>
+        <!-- CENTER CONTENT -->
+        <ion-pane ion-side-menu-content ng-controller="MainController">
+            <ion-nav-bar type="bar-positive"
+                         back-button-type="button-icon"
+
+                         back-button-icon="ion-ios7-arrow-back"></ion-nav-bar>
+            <ion-nav-view name="main"></ion-nav-view>
+        </ion-pane>
+
+        <!-- RIGHT MENU -->
+        <ion-side-menu side="right" ng-controller="MainController">
+            <header class="bar bar-header bar-assertive">
+                <div class="title">Menu</div>
+            </header>
+            <ion-content has-header="true">
+                <ul class="list">
+                    <a class="item" ng-click="logout()">Log Out</a>
+                </ul>
+            </ion-content>
+        </ion-side-menu>
+
+    </ion-side-menus>
+</ion-view>
