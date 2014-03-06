@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('ionicParseApp',
-        [ 'ionic', 'ionicParseApp.services', 'ionicParseApp.controllers' ]
+        [ 'ionic', 'ionicParseApp.controllers' ]
     )
     .config(function ($stateProvider, $urlRouterProvider) {
 
