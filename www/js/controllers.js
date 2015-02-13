@@ -38,7 +38,7 @@ angular.module('ionicParseApp.controllers', [])
         });
 
         var user = $scope.user;
-        Parse.User.logIn(user.username.toLowerCase(), user.password, {
+        Parse.User.logIn(('' + user.username).toLowerCase(), user.password, {
             success: function(user) {
                 $scope.loading.hide();
                 $rootScope.user = user;
