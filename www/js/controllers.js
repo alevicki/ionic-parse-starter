@@ -1,26 +1,42 @@
 angular.module('ionicParseApp.controllers', [])
 
-.controller('WelcomeController', function($scope, $state, $ionicHistory,
-                                          $stateParams) {
+.controller('AppController', function($scope, $rootScope, $state) {
+    $scope.login = function() {
+        $state.go('app.login');
+    };
+
+    $scope.register = function() {
+        $state.go('app.register');
+    };
+
+    $scope.logout = function() {
+        Parse.User.logOut();
+        $rootScope.user = null;
+        $rootScope.isLoggedIn = false;
+        $state.go('welcome', {
+            clear: true
+        });
+    };
+})
+
+.controller('WelcomeController', function($scope, $state, $rootScope, $ionicHistory, $stateParams) {
     if ($stateParams.clear) {
         $ionicHistory.clearHistory();
     }
 
-    $scope.login = function () {
-        $state.go('login');
-    };
-
-    $scope.signUp = function () {
-        $state.go('register');
-    };
+    if ($rootScope.isLoggedIn) {
+        $state.go('app.home');
+    }
 })
 
-.controller('HomeController', function ($scope) {
+.controller('HomeController', function($scope, $state, $rootScope) {
 
+    if (!$rootScope.isLoggedIn) {
+        $state.go('welcome');
+    }
 })
 
-.controller('LoginController', function ($scope, $state, $rootScope,
-                                         $ionicLoading) {
+.controller('LoginController', function($scope, $state, $rootScope, $ionicLoading) {
     $scope.user = {
         username: null,
         password: null
@@ -28,7 +44,7 @@ angular.module('ionicParseApp.controllers', [])
 
     $scope.error = {};
 
-    $scope.login = function () {
+    $scope.login = function() {
         $scope.loading = $ionicLoading.show({
             content: 'Logging in',
             animation: 'fade-in',
@@ -43,7 +59,9 @@ angular.module('ionicParseApp.controllers', [])
                 $ionicLoading.hide();
                 $rootScope.user = user;
                 $rootScope.isLoggedIn = true;
-                $state.go('main.home', {clear: true});
+                $state.go('app.home', {
+                    clear: true
+                });
             },
             error: function(user, err) {
                 $ionicLoading.hide();
@@ -59,20 +77,19 @@ angular.module('ionicParseApp.controllers', [])
         });
     };
 
-    $scope.forgot = function () {
+    $scope.forgot = function() {
         $state.go('forgot');
     };
 })
 
-.controller('ForgotPasswordController', function ($scope, $state,
-                                                  $ionicLoading) {
+.controller('ForgotPasswordController', function($scope, $state, $ionicLoading) {
     $scope.user = {};
     $scope.error = {};
     $scope.state = {
         success: false
     };
 
-    $scope.reset = function () {
+    $scope.reset = function() {
         $scope.loading = $ionicLoading.show({
             content: 'Sending',
             animation: 'fade-in',
@@ -101,17 +118,16 @@ angular.module('ionicParseApp.controllers', [])
         });
     };
 
-    $scope.login = function () {
+    $scope.login = function() {
         $state.go('login');
     };
 })
 
-.controller('RegisterController', function ($scope, $state, $ionicLoading,
-                                            $rootScope) {
+.controller('RegisterController', function($scope, $state, $ionicLoading, $rootScope) {
     $scope.user = {};
     $scope.error = {};
 
-    $scope.register = function () {
+    $scope.register = function() {
 
         // TODO: add age verification step
 
@@ -133,7 +149,9 @@ angular.module('ionicParseApp.controllers', [])
                 $ionicLoading.hide();
                 $rootScope.user = user;
                 $rootScope.isLoggedIn = true;
-                $state.go('main.home', {clear: true});
+                $state.go('app.home', {
+                    clear: true
+                });
             },
             error: function(user, error) {
                 $ionicLoading.hide();
@@ -152,27 +170,26 @@ angular.module('ionicParseApp.controllers', [])
     };
 })
 
-.controller('MainController', function ($scope, $state, $rootScope,
-                                        $stateParams, $ionicHistory) {
+.controller('MainController', function($scope, $state, $rootScope, $stateParams, $ionicHistory) {
     if ($stateParams.clear) {
         $ionicHistory.clearHistory();
     }
 
-    $scope.rightButtons = [
-        {
-            type: 'button-positive',
-            content: '<i class="icon ion-navicon"></i>',
-            tap: function(e) {
-                $scope.sideMenuController.toggleRight();
-            }
+    $scope.rightButtons = [{
+        type: 'button-positive',
+        content: '<i class="icon ion-navicon"></i>',
+        tap: function(e) {
+            $scope.sideMenuController.toggleRight();
         }
-    ];
+    }];
 
-    $scope.logout = function () {
+    $scope.logout = function() {
         Parse.User.logOut();
         $rootScope.user = null;
         $rootScope.isLoggedIn = false;
-        $state.go('welcome', {clear: true});
+        $state.go('welcome', {
+            clear: true
+        });
     };
 
     $scope.toggleMenu = function() {
