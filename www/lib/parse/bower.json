@@ -1,0 +1,16 @@
+{
+  "name": "parse",
+  "version": "1.3.4",
+  "main": [
+    "parse.min.js"
+  ],
+  "keywords": [
+    "parse",
+    "parse.com",
+    "api",
+    "js"
+  ],
+  "ignore":[
+    "download_latest.sh"
+  ]
+}
