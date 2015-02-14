@@ -3,6 +3,7 @@ angular.module('ionicParseApp.controllers', [])
 .controller('AppController', function($scope, $state, $rootScope, $ionicHistory, $stateParams) {
     if ($stateParams.clear) {
         $ionicHistory.clearHistory();
+        $ionicHistory.clearCache();
     }
 
     $scope.logout = function() {
@@ -18,6 +19,7 @@ angular.module('ionicParseApp.controllers', [])
 .controller('WelcomeController', function($scope, $state, $rootScope, $ionicHistory, $stateParams) {
     if ($stateParams.clear) {
         $ionicHistory.clearHistory();
+        $ionicHistory.clearCache();
     }
 
     $scope.login = function() {
