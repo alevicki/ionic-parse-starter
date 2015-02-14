@@ -1,14 +1,13 @@
-// Ionic Starter App
+// Ionic Parse Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// 'ionicParseApp' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
+// 'ionicParseApp.controllers' is found in controllers.js
 angular.module('ionicParseApp',
         [ 'ionic', 'ionicParseApp.controllers' ]
     )
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function($stateProvider, $urlRouterProvider) {
 
         // Ionic uses AngularUI Router which uses the concept of states
         // Learn more here: https://github.com/angular-ui/ui-router
@@ -22,39 +21,52 @@ angular.module('ionicParseApp',
                 templateUrl: 'templates/welcome.html',
                 controller: 'WelcomeController'
             })
-            
-            .state('main', {
-                url: '/main?clear',
+
+            .state('app', {
+                url: '/app?clear',
                 abstract: true,
-                templateUrl: 'templates/main.html'
+                templateUrl: 'templates/menu.html',
+                controller: 'AppController'
             })
 
-            .state('main.home', {
+            .state('app.home', {
                 url: '/home',
                 views: {
-                    'main': {
-                        templateUrl: 'templates/home.html'
+                    'menuContent': {
+                        templateUrl: 'templates/home.html',
+                        controller: 'HomeController'
                     }
-                },
-                controller: 'HomeController'
+                }
             })
 
-            .state('login', {
+            .state('app.login', {
                 url: '/login',
-                templateUrl: 'templates/login.html',
-                controller: 'LoginController'
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/login.html',
+                        controller: 'LoginController'
+                    }
+                }
             })
 
-            .state('forgot', {
+            .state('app.forgot', {
                 url: '/forgot',
-                templateUrl: 'templates/forgotPassword.html',
-                controller: 'ForgotPasswordController'
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/forgotPassword.html',
+                        controller: 'ForgotPasswordController'
+                    }
+                }
             })
 
-            .state('register', {
+            .state('app.register', {
                 url: '/register',
-                templateUrl: 'templates/register.html',
-                controller: 'RegisterController'
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/register.html',
+                        controller: 'RegisterController'
+                    }
+                }
             });
 
         $urlRouterProvider.otherwise('/welcome');
@@ -62,9 +74,13 @@ angular.module('ionicParseApp',
     .run(function ($state, $rootScope) {
         Parse.initialize('applicationId', 'javascriptKey');
         var currentUser = Parse.User.current();
+        $rootScope.user = null;
+        $rootScope.isLoggedIn = false;
+
         if (currentUser) {
             $rootScope.user = currentUser;
-            $state.go('main.home');
+            $rootScope.isLoggedIn = true;
+            $state.go('app.home');
         }
     });
 

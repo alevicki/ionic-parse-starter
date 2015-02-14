@@ -1,0 +1,10 @@
+{
+  "name": "ionic-parse-starter-updated",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.0.0-beta.14"
+  },
+  "dependencies": {
+    "parse": "~1.3.4"
+  }
+}
