@@ -62,8 +62,10 @@ angular.module('ionicParseApp',
     .run(function ($state, $rootScope) {
         Parse.initialize('applicationId', 'javascriptKey');
         var currentUser = Parse.User.current();
+        $rootScope.isLoggedIn = false;
         if (currentUser) {
             $rootScope.user = currentUser;
+            $rootScope.isLoggedIn = true;
             $state.go('main.home');
         }
     });

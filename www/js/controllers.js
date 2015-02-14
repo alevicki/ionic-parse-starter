@@ -42,6 +42,7 @@ angular.module('ionicParseApp.controllers', [])
             success: function(user) {
                 $ionicLoading.hide();
                 $rootScope.user = user;
+                $rootScope.isLoggedIn = true;
                 $state.go('main.home', {clear: true});
             },
             error: function(user, err) {
@@ -131,6 +132,7 @@ angular.module('ionicParseApp.controllers', [])
             success: function(user) {
                 $ionicLoading.hide();
                 $rootScope.user = user;
+                $rootScope.isLoggedIn = true;
                 $state.go('main.home', {clear: true});
             },
             error: function(user, error) {
@@ -169,6 +171,7 @@ angular.module('ionicParseApp.controllers', [])
     $scope.logout = function () {
         Parse.User.logOut();
         $rootScope.user = null;
+        $rootScope.isLoggedIn = false;
         $state.go('welcome', {clear: true});
     };
 
