@@ -1,9 +1,9 @@
 angular.module('ionicParseApp.controllers', [])
 
-.controller('WelcomeController', function($scope, $state, $ionicViewService,
+.controller('WelcomeController', function($scope, $state, $ionicHistory,
                                           $stateParams) {
     if ($stateParams.clear) {
-        $ionicViewService.clearHistory();
+        $ionicHistory.clearHistory();
     }
 
     $scope.login = function () {
@@ -151,9 +151,9 @@ angular.module('ionicParseApp.controllers', [])
 })
 
 .controller('MainController', function ($scope, $state, $rootScope,
-                                        $stateParams, $ionicViewService) {
+                                        $stateParams, $ionicHistory) {
     if ($stateParams.clear) {
-        $ionicViewService.clearHistory();
+        $ionicHistory.clearHistory();
     }
 
     $scope.rightButtons = [

@@ -22,7 +22,7 @@ angular.module('ionicParseApp',
                 templateUrl: 'templates/welcome.html',
                 controller: 'WelcomeController'
             })
-            
+
             .state('main', {
                 url: '/main?clear',
                 abstract: true,
