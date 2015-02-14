@@ -1,13 +1,9 @@
 angular.module('ionicParseApp.controllers', [])
 
-.controller('AppController', function($scope, $rootScope, $state) {
-    $scope.login = function() {
-        $state.go('app.login');
-    };
-
-    $scope.register = function() {
-        $state.go('app.register');
-    };
+.controller('AppController', function($scope, $state, $rootScope, $ionicHistory, $stateParams) {
+    if ($stateParams.clear) {
+        $ionicHistory.clearHistory();
+    }
 
     $scope.logout = function() {
         Parse.User.logOut();
@@ -23,6 +19,14 @@ angular.module('ionicParseApp.controllers', [])
     if ($stateParams.clear) {
         $ionicHistory.clearHistory();
     }
+
+    $scope.login = function() {
+        $state.go('app.login');
+    };
+
+    $scope.signUp = function() {
+        $state.go('app.register');
+    };
 
     if ($rootScope.isLoggedIn) {
         $state.go('app.home');
@@ -78,7 +82,7 @@ angular.module('ionicParseApp.controllers', [])
     };
 
     $scope.forgot = function() {
-        $state.go('forgot');
+        $state.go('app.forgot');
     };
 })
 
@@ -119,7 +123,7 @@ angular.module('ionicParseApp.controllers', [])
     };
 
     $scope.login = function() {
-        $state.go('login');
+        $state.go('app.login');
     };
 })
 
