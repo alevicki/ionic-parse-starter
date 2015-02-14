@@ -40,12 +40,12 @@ angular.module('ionicParseApp.controllers', [])
         var user = $scope.user;
         Parse.User.logIn(('' + user.username).toLowerCase(), user.password, {
             success: function(user) {
-                $scope.loading.hide();
+                $ionicLoading.hide();
                 $rootScope.user = user;
                 $state.go('main.home', {clear: true});
             },
             error: function(user, err) {
-                $scope.loading.hide();
+                $ionicLoading.hide();
                 // The login failed. Check error to see why.
                 if (err.code === 101) {
                     $scope.error.message = 'Invalid login credentials';
@@ -83,12 +83,12 @@ angular.module('ionicParseApp.controllers', [])
         Parse.User.requestPasswordReset($scope.user.email, {
             success: function() {
                 // TODO: show success
-                $scope.loading.hide();
+                $ionicLoading.hide();
                 $scope.state.success = true;
                 $scope.$apply();
             },
             error: function(err) {
-                $scope.loading.hide();
+                $ionicLoading.hide();
                 if (err.code === 125) {
                     $scope.error.message = 'Email address does not exist';
                 } else {
@@ -129,12 +129,12 @@ angular.module('ionicParseApp.controllers', [])
 
         user.signUp(null, {
             success: function(user) {
-                $scope.loading.hide();
+                $ionicLoading.hide();
                 $rootScope.user = user;
                 $state.go('main.home', {clear: true});
             },
             error: function(user, error) {
-                $scope.loading.hide();
+                $ionicLoading.hide();
                 if (error.code === 125) {
                     $scope.error.message = 'Please specify a valid email ' +
                         'address';
