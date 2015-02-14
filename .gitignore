@@ -1,3 +1,7 @@
-platforms
-merges
-plugins
+# Node.js & NPM
+npm-debug.log
+node_modules/
+
+# Ionic Framework
+platforms/
+plugins/
