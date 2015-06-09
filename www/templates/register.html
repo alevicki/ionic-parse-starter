@@ -7,10 +7,6 @@
             <label class="item item-input">
                 <input type="password" ng-model="user.password" placeholder="Password">
             </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Date of Birth</span>
-                <input type="date" ng-model="user.dob">
-            </label>
         </div>
         <div class="assertive" ng-show="error.message">{{error.message}}</div>
         <button class="button button-block button-positive" ng-click="register()">
